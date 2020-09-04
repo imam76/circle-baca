@@ -30,10 +30,11 @@ module.exports = {
   },
   devServer: {
     contentBase: "./dist",
+    port: 3000,
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: "./public/index.html",
       filename: "index.html",
     }),
     new MiniCssExtractPlugin({
