@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Switch, useLocation } from "react-router-dom";
+
+//import Pages
+import PageNotFound from "./Pages/PageNotFound";
+
+const Page = () => {
+  return <p>Hallo selamat datang</p>;
+};
 
 function App() {
+  const location = useLocation();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch location={location}>
+        <Route exact path="/" component={Page} />
+        <Route component={PageNotFound} />
+      </Switch>
     </div>
   );
 }
