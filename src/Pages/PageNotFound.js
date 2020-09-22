@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
-import imagePageNotFound from "../Assets/PageNotFound.svg";
+import imagePageNotFound from "../Assets/Svg/PageNotFound.svg";
 
 const PageNotFound = () => {
   return (

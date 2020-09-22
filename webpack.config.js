@@ -1,7 +1,14 @@
+const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "index_bundle.js",
+    publicPath: "/",
+  },
   module: {
     rules: [
       {
@@ -16,7 +23,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        test: /\.(png|jp(e*)g|svg|gif)$/,
+        test: /\.(png|jp(e*)g|svg|gif|woff|woff2|ttf|eot|ico)$/,
         use: [
           {
             loader: "file-loader",
@@ -30,6 +37,7 @@ module.exports = {
   },
   devServer: {
     contentBase: "./dist",
+    historyApiFallback: true,
     port: 3000,
   },
   plugins: [

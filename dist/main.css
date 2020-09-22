@@ -1,17 +1,22 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 .img-banner-landing-page {
   height: 400px;
   margin-top: 64px;
   margin-bottom: 32px;
   display: block;
-}
-
-/* font family */
-.alfa-slab-one {
-  font-family: Alfa Slab One !important;
-}
-
-.rubik {
-  font-family: Rubik !important;
 }
 
 .header-landing-page {
@@ -28,11 +33,11 @@
 }
 
 /* global margin and padding */
-.padding-none {
+.padding-none{
   padding: 0 !important;
 }
 .margin-top-64 {
-  margin-top: 64px !important;
+  margin-top: 64px;
 }
 .margin-top-16 {
   margin-top: 16px !important;
@@ -51,12 +56,3 @@
   text-transform: uppercase;
 }
 
-.ql-editor {
-  min-height: 500px;
-  padding-bottom: 500px ;
-  font-size: 16px;
-}
-
-#title-story{
-  border-bottom: solid 1px #eee;
-}

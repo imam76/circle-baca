@@ -1,14 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "react-quill/dist/quill.snow.css"
+import "react-quill/dist/quill.bubble.css"
+import "react-quill/dist/quill.core.css"
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
+import { MuiThemeProvider } from "@material-ui/core";
+
+//themes
+import MuiThemes from "./Assets/Themes/MuiThemes";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <MuiThemeProvider theme={MuiThemes}>
+        <App />
+      </MuiThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
