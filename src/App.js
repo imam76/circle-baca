@@ -1,37 +1,44 @@
+import { createMuiTheme, Grid, MuiThemeProvider } from "@material-ui/core";
 import React from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
-
+import "./App.css";
 //import Pages
+import DenseAppBar from "./Pages/Appbar/AppBar";
+import CreateBook from "./Pages/Book/CreateBook";
+import ReadBook from "./Pages/Book/ReadBook";
 import Home from "./Pages/Home/HomePage";
 import PageNotFound from "./Pages/PageNotFound";
-import { Grid, Typography, AppBar, Toolbar } from "@material-ui/core";
 
-//import svg
-import BookLover from "./Assets/BookLover.svg";
-import './App.css';
+const theme = createMuiTheme({
+  palette: {
+    divider: "rgb(63 81 181 / 27%)",
+  },
+  typography: {
+    fontFamily: "Roboto",
+    fontSize: 14,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    fontWeightBold: 700,
+  },
+});
 
 function App() {
   const location = useLocation();
   return (
-    <div className="App">
-      {/* <AppBar elevation={0}>
-        <Toolbar>
-          <Typography component="span">Cicle Baca</Typography>
-        </Toolbar>
-      </AppBar> */}
+    <MuiThemeProvider theme={theme}>
       <Grid container justify="space-around">
         <Grid item xs>
-          <Typography component="span" variant="h5" color="primary">
-            <b>Circle Baca</b>
-          </Typography>
-          <img src={BookLover} className="home-banner"/>
+          <DenseAppBar />
         </Grid>
       </Grid>
       <Switch location={location}>
         <Route exact path="/" component={Home} />
+        <Route path="/create-book" component={CreateBook} />
+        <Route path="/read-book/:id" component={ReadBook} />
         <Route component={PageNotFound} />
       </Switch>
-    </div>
+    </MuiThemeProvider>
   );
 }
 
