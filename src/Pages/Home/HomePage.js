@@ -1,163 +1,85 @@
-import React from "react";
 import {
-  Grid,
-  Typography,
-  Box,
-  makeStyles,
-  Button,
-  Paper,
+  Divider, Grid, IconButton, List,
+  ListItem, ListItemSecondaryAction, ListItemText,
+  Typography
 } from "@material-ui/core";
+import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
-//import svg
-import BookLover from "../../Assets/Svg/BookLover.svg";
-import { Link, useHistory } from "react-router-dom";
-const useStyles = makeStyles({
-  tagline: {
-    height: "100%",
-  },
-});
 
 function HomePage() {
-  const classes = useStyles();
   const history = useHistory();
-  const handleCreateSomething = () => {
-    history.push("/writebook");
+  const [state, setstate] = useState([]);
+
+  const fetchData = async () => {
+    const result = await axios("http://localhost:3002/posts");
+    setstate(result.data);
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleClick = (id) => () => {
+    console.log("item clicked", id);
+    history.push(`/read-book/${id}`);
+  };
+
+  const handleDelete = (id) => () => {
+    const url = `http://localhost:3002/posts/${id}`;
+    axios
+      .delete(url)
+      .then((res) => {
+        console.log("delete res", res);
+        fetchData();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  console.log(state);
+
   return (
-    <div>
-      <Grid container className="header-landing-page" justify="center">
-        <Grid container alignItems="flex-start" item xs={10}>
-          <Grid item xs={7}>
-            <img
-              className="cover-book"
-              src={BookLover}
-              className="img-banner-landing-page"
-            />
-          </Grid>
-          <Grid
-            container
-            classes={{ root: classes.tagline }}
-            justify="flex-start"
-            alignItems="center"
-            item
-            xs
-          >
-            <Grid container spacing={4} direction="row" item xs={12}>
-              <Grid item xs={12}>
-                <Typography
-                  component="span"
-                  variant="h3"
-                  color="primary"
-                  className="alfa-slab-one uppercase"
-                >
-                  Read, It’s a need you can feed.
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography component="p" variant="body1" className="lowercase">
-                  Reading Slogans shows the importance of reading books. You can
-                  go anywhere by reading a book. You can learn a lot.
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  style={{ marginRight: 8 }}
-                >
-                  Read Now
-                </Button>
-                <Button
-                  color="primary"
-                  variant="outlined"
-                  style={{ marginLeft: 8 }}
-                  onClick={handleCreateSomething}
-                >
-                  Create something
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+    <Grid container justify="center">
+      <Grid item xs={8} className="padding-top-94">
+        <List component="ul" aria-label="secondary mailbox folders">
+          {state.length !== 0 ? (
+            state.map((item, index) => (
+              <React.Fragment key={index}>
+                <ListItem button onClick={handleClick(item.id)}>
+                  <ListItemText
+                    primary={
+                      <Typography variant="h5" color="primary">
+                        {item.title}
+                      </Typography>
+                    }
+                    secondary={
+                      <Typography variant="caption">
+                        Author: {item.author}
+                      </Typography>
+                    }
+                  />
+                  <ListItemSecondaryAction>
+                    <IconButton
+                      aria-label="delete"
+                      onClick={handleDelete(item.id)}
+                    >
+                      <DeleteForeverRoundedIcon color="secondary" />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <Divider variant="fullWidth" component="li" />
+              </React.Fragment>
+            ))
+          ) : (
+            <Typography> Data Kosong </Typography>
+          )}
+        </List>
       </Grid>
-      <Grid container justify="center" className="margin-top-64">
-        <Grid item xs={10}>
-          <Typography variant="h3" component="span" className="capitalize">
-            buku pilihan untuk mu
-          </Typography>
-        </Grid>
-        <Grid container item xs={10} className="margin-top-16">
-          <Grid item xs={2} style={{ marginRight: 32 }}>
-            <Paper elevation={2}>
-              <img
-                className="cover-book"
-                src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1588152105"
-              />
-            </Paper>
-            <Button
-              variant="outlined"
-              size="small"
-              className="margin-top-16 btn-rounded padding-none"
-            >
-              <Typography className="lowercase" component="p" variant="caption">
-                Novel
-              </Typography>
-            </Button>
-          </Grid>
-          <Grid item xs={2} style={{ marginRight: 32 }}>
-            <Paper elevation={2}>
-              <img
-                className="cover-book"
-                src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1588152105"
-              />
-            </Paper>
-            <Button
-              variant="outlined"
-              size="small"
-              className="margin-top-16 btn-rounded padding-none"
-            >
-              <Typography className="lowercase" component="p" variant="caption">
-                Novel
-              </Typography>
-            </Button>
-          </Grid>
-          <Grid item xs={2} style={{ marginRight: 32 }}>
-            <Paper elevation={2}>
-              <img
-                className="cover-book"
-                src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1588152105"
-              />
-            </Paper>
-            <Button
-              variant="outlined"
-              size="small"
-              className="margin-top-16 btn-rounded padding-none"
-            >
-              <Typography className="lowercase" component="p" variant="caption">
-                Novel
-              </Typography>
-            </Button>
-          </Grid>
-          <Grid item xs={2} style={{ marginRight: 32 }}>
-            <Paper elevation={2}>
-              <img
-                className="cover-book"
-                src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-thriller-book-cover-design-template-3675ae3e3ac7ee095fc793ab61b812cc_screen.jpg?ts=1588152105"
-              />
-            </Paper>
-            <Button
-              variant="outlined"
-              size="small"
-              className="margin-top-16 btn-rounded padding-none"
-            >
-              <Typography className="lowercase" component="p" variant="caption">
-                Novel
-              </Typography>
-            </Button>
-          </Grid>
-        </Grid>
-      </Grid>
-    </div>
+    </Grid>
   );
 }
 

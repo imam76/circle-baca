@@ -7,11 +7,16 @@ import "react-quill/dist/quill.core.css"
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
+<<<<<<< HEAD
 import { MuiThemeProvider } from "@material-ui/core";
 
 //themes
 import MuiThemes from "./Assets/Themes/MuiThemes";
+=======
+import { createBrowserHistory } from "history";
+>>>>>>> 842f42dadcda240b48348051d882d5513da9ddd7
 
+const history = () => createBrowserHistory();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
