@@ -38,6 +38,9 @@ function App() {
         <Route path="/read-book/:id" component={ReadBook} />
         <Route component={PageNotFound} />
       </Switch>
+      <Grid container justify="center" alignItems="center">
+        ©Asep Imam Nawawi & Team
+      </Grid>
     </MuiThemeProvider>
   );
 }

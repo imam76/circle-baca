@@ -19,7 +19,9 @@ function HomePage() {
   const [state, setstate] = useState([]);
 
   const fetchData = async () => {
-    const result = await axios("http://localhost:3002/posts");
+    const result = await axios(
+      "https://5ee02bf49ed06d001696dbb8.mockapi.io/api/v1/books"
+    );
     setstate(result.data);
   };
 
@@ -33,7 +35,7 @@ function HomePage() {
   };
 
   const handleDelete = (id) => () => {
-    const url = `http://localhost:3002/posts/${id}`;
+    const url = `https://5ee02bf49ed06d001696dbb8.mockapi.io/api/v1/books/${id}`;
     axios
       .delete(url)
       .then((res) => {

@@ -14,7 +14,7 @@ export default function ReadBook() {
   };
 
   useEffect(() => {
-    const url = `http://localhost:3002/posts/${id}`;
+    const url = `https://5ee02bf49ed06d001696dbb8.mockapi.io/api/v1/books/${id}`;
     fetchData(url);
   }, []);
 

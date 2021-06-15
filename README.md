@@ -1,8 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Open Terminal or CMD and move to this Directory
+### Open Terminal or CMD and move to this Directory
 
-## Open Terminal or CMD and move to this Directory
+### Open Terminal or CMD and move to this Directory
 
 ## important !!
 
@@ -16,7 +16,7 @@ Install NODE JS First !!.
 
 after instal this you can run this command
 
-## json-server --watch db.json --port 3000
+## json-server --watch ./db/dbs.json --port 3002
 
 ## Available Scripts
 
